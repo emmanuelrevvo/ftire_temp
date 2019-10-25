@@ -1,0 +1,17 @@
+****** FTire input files merged into a single file ********
+$files
+ ISIM="/home/eob047/download/cosin_private/ftire/simul/_default2.sim"
+ IPAR="/home/eob047/download/cosin_private/ftire/param/_default.tir"
+ OPLOT=temp1.mtl
+ OPPAR=temp1.txt
+ 
+$parameters
+*** P 2.4		! inflation pressure (bar)
+ V 20  		! speed [m/s]
+ FZ 4  		! wheel load [kN]
+ AL 20 		! slip angle amplitude [deg]
+ GA 0  		! camber angle [deg]
+ H 0.001 	! step size [s]
+ HI H		! output step size [s]
+ HA 10*H	! animation step size [s]
+ TEND 2.5	! final time [s]

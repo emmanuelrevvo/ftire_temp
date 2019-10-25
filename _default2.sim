@@ -1,0 +1,34 @@
+***************************************************************************************************
+* FTire simulation data: sinusoidal steering
+
+$parameters !***************************************************************************************
+**V          20             ! speed [m/s]
+** FZ         4              ! wheel load [kN]
+** AL         20             ! slip angle amplitude [deg]
+**GA         0              ! camber angle [deg]
+** H          0.001          ! step size [s]
+**HI         H              ! output step size [s]
+**HA         10*H           ! animation step size [s]
+** TEND       6              ! final time [s]
+
+$simulation !***************************************************************************************
+ simulation                               0        H     TEND          ! from/step/to s
+ plot_output                              0       HI     TEND          ! from/step/to s
+ animation                                0       HA     TEND          ! from/step/to s
+ movie_quality                          100                            ! 1..999, 100 is theor. best
+ road_eval_preference                     2                            ! 0=def 1=cosin 2=3rd-party
+
+$sources !******************************************************************************************
+ rolling_speed                    V
+ free_spinning                    1
+ wheel_load                       FZ
+ wheel_load_regulated             0
+ camber_angle                     GA
+ slip_angle                       0
+
+ t>0 :
+ slip_angle                       AL*sin(2*pi*t/TEND)
+
+$road !*********************************************************************************************
+ type                                 even                             !
+ offset                                   0                            ! mm

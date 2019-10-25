@@ -1,0 +1,665 @@
+$---------------------------------------------------------------------MDI_HEADER
+[MDI_HEADER]
+ FILE_TYPE    =  'tir'
+ FILE_VERSION =  7.0
+ FILE_FORMAT  =  'ASCII'
+
+(COMMENTS)
+{comment_string}
+ 'Tire Manufacturer       n/a'
+ 'Tire Type               n/a'
+ 'Tire Dimension          205/55 R 16 91V 6.5J'
+ 'Pressure                2.40 bar'
+ 'Generation Date         2013-09-20'
+ 'Last Modification Date  2018-06-01 08:07:04'
+ 'Software Revision       r17532.0'
+ 'svn Status              $Id: _default.tir 17543 2018-06-01 08:55:18Z mb $'
+
+$--------------------------------------------------------------------------UNITS
+[UNITS]
+ FORCE  = 'newton'
+ MASS   = 'kg'
+ LENGTH = 'mm'
+ TIME   = 'sec'
+ ANGLE  = 'deg'
+
+$----------------------------------------------------------------------DOE_PARAM
+[DOE_PARAM]
+$use up to 20 factors p1, p2, p3,.. to modify parameters in [FTIRE_DATA]
+$these values might be overwritten, depending on environment
+ p1 =                              1                      $ -
+ p2 =                              1                      $ -
+ p3 =                              1                      $ -
+$etc.
+
+$--------------------------------------------------------------------------SHAPE
+[SHAPE]
+$these data are not used by FTire, but only by some 3rd-party solvers
+{radial width}
+ 1.0   0.0
+ 1.0   0.4
+ 1.0   0.9
+ 0.9   1.0
+
+$----------------------------------------------------------------------DIMENSION
+[DIMENSION]
+$these data are not used by FTire, but only by some 3rd-party solvers
+ unloaded_radius =                 316.086                $ mm
+ width =                           205                    $ mm
+ aspect_ratio =                    0.55                   $ -
+ rim_radius =                      203.2                  $ mm
+ rim_width =                       165.1                  $ mm
+
+$-----------------------------------------------------------------------VERTICAL
+[VERTICAL]
+$these data are not used by FTire, but only by some 3rd-party solvers
+ vertical_stiffness =              165.687                $ N/mm
+ vertical_damping =                0                      $ Ns/mm
+
+$----------------------------------------------------------------MASS_CORRECTION
+[MASS_CORRECTION]
+$these data are not used by FTire, but only by some 3rd-party solvers
+ free_tire_mass =                  4.52276                $ kg
+ free_tire_jxx_jzz =               2.10483e5              $ kgmm^2
+ free_tire_jyy =                   4.20966e5              $ kgmm^2
+
+$--------------------------------------------------------------------------MODEL
+[MODEL]
+ property_file_format =            'FTIRE'
+ gravity =                         'earth'
+ tire_construction =               'pneumatic_tire'
+ tire_structure =                  'R'
+ tire_side =                       'asis'
+ n_tire_states =                   30                     $ -
+ run_time_mode =                   0                      $ 0..6
+ cosimulation_mode =               0                      $ 0 or 1
+ diagnosis_mode =                  0                      $ 0 or 1
+ adjust_input_signals =            0                      $ 0,1,2
+ statics_accuracy =                0                      $ 0,1,2
+ refresh_preprocessing =           0                      $ 0 or 1
+ append_pp_data_to_this_file =     1                      $ 0 or 1
+ activate_tread_pattern =          0                      $ 0 or 1
+ activate_thermal_model =          0                      $ 0 or 1
+ activate_tread_wear_model =       0                      $ 0,1,2,3
+ activate_side_wall_model =        0                      $ 0 or 1
+ activate_air_vibration_model =    0                      $ 0,1,2
+ activate_flexible_rim_model =     0                      $ 0,1,2
+ activate_TPMS_model =             0                      $ 0 or 1
+ balance_statically =              0                      $ 0 or 1
+
+.......................................................file output configuration
+ verbose =                         0                      $ div.
+ additional_output_file =          0                      $ 0,1,2
+ record_file =                     0                      $ 0,1,2
+ save_contact_forces =             0                      $ 0 or 1
+ save_rim_forces =                 0                      $ 0 or 1
+ save_geometry =                   0                      $ div
+ save_surface =                    0                      $ div
+ save_wheel_envelope =             0                      $ 0 or 1
+ save_contact_patch_boundary =     0                      $ 0 or 1
+ save_belt_states =                0                      $ 0 or 1
+ save_tread_states =               0                      $ div
+ save_tread_depths =               0                      $ 0 or 1
+ save_rgr_data =                   0                      $ 0..7
+ output_end =                      999                    $ s
+ sensor_1 =                        500000420              $ div.
+ sensor_2 =                        500000500              $ div.
+ sensor_3 =                        500000580              $ div.
+
+.........................................................animation configuration
+ separate_animation =              104000011              $ div.
+ animation_end =                   999                    $ s
+ more_animation_settings =         200                    $ div.
+ width_animation_window =          320                    $ mm
+ height_animation_window =         180                    $ mm
+ camera_distance_to_rim =          8000                   $ m
+ camera_azimuth =                  15                     $ deg
+ camera_elevation =                2                      $ deg
+ video_codec_id =                  13                     $ 0,..
+ mm_cp_per_mm_img =                2                      $ >=1
+ road_grid_line_dist_x =           50                     $ mm
+ road_grid_line_dist_y =           50                     $ mm
+ road_grid_size_x =                2000                   $ mm
+ road_grid_size_y =                2000                   $ mm
+ rim_surface_color_code =          200                    $ -
+ sidewall_texture_transp_thresh =  99                     $ %
+ sidewall_texture_scaling =        100                    $ %
+ sidewall_texture_repetition =     1                      $ #
+ x_pos_footprint_contour_plot =    0                      $ mm
+ y_pos_footprint_contour_plot =    999                    $ mm
+ size_footprint_contour_plot =     50                     $ mm
+ scaling_footprint_contour_plot =  0                      $ -2..2
+ x_pos_running_diagrams =          999                    $ mm
+ y_pos_running_diagrams =          999                    $ mm
+ size_running_diagrams =           50                     $ mm
+
+$-----------------------------------------------------------OPERATING_CONDITIONS
+[OPERATING_CONDITIONS]
+$temp. values will serve as initial conditions if thermal model is activated
+
+$---------------------------------------------------------------------------DATA
+[FTIRE_DATA]
+$........................................................basic data and geometry
+ tire_section_width =              205                    $ mm
+ tire_aspect_ratio =               55                     $ %
+ rim_diameter =                    406.4                  $ mm
+ load_index =                      91                     $ -
+ speed_symbol =                    'V'
+ rim_width =                       165.1                  $ mm
+ rim_contour =                     'J'
+ wheel_offset_ET =                 0                      $ mm
+ rolling_circumference =           1916.91                $ mm
+ tire_mass =                       8.1                    $ kg
+ belt_width =                      178.72                 $ mm
+ tread_width =                     178                    $ mm
+ volume_gradient =                 0                      $ %/mm
+ belt_lat_curvature_radius =       1100                   $ mm
+
+$...................................static and modal data for 1st infl. pressure
+ first_deflection =                18.2                   $ mm
+ second_deflection =               32.4                   $ mm
+ stat_wheel_load_at_first_defl =   3015.5                 $ N
+ stat_wheel_load_at_second_defl =  6031.1                 $ N
+ max_radial_progressivity =        120                    $ %
+
+ wheel_load_long_stiffn =          5026.69                $ N
+ tire_long_stiffn =                228.755                $ N/mm
+ wheel_load_lat_stiffn =           5018.05                $ N
+ tire_lat_stiffn =                 111.279                $ N/mm
+ wheel_load_tors_stiffn =          5026.69                $ N
+ tire_tors_stiffn =                4.13306e4              $ Nmm/deg
+
+ tire_long_stiffn_progr =          -10                    $ %
+ tire_lat_stiffn_progr =           -10                    $ %
+
+ fourth_deflection =               18.1614                $ mm
+ slip_stiffn =                     697.891                $ N/%
+
+ fifth_deflection =                18.1614                $ mm
+ cornering_stiffn =                960.503                $ N/deg
+ pneumatic_trail =                 16.2782                $ mm
+ camber_stiffn =                   63.8405                $ N/deg
+
+ belt_in_plane_bend_stiffn =       1.8e6                  $ Nmm^2
+ belt_out_of_plane_bend_stiffn =   8.83605e7              $ Nmm^2
+ belt_lat_bend_stiffn =            6.0e6                  $ Nmm^2
+ rel_belt_edge_width =             0                      $ %
+ rel_belt_edge_lat_bend_stiffn =   100                    $ %
+ belt_lat_bend_stiffn_long_coupl = 0.5                    $ -
+ belt_lat_bend_stiffn_rad_coupl =  0.5                    $ -
+ belt_lat_bend_stiffn_progr =      0                      $ %
+ belt_rad_torsion_stiffn =         4.13e5                 $ N/deg
+ belt_torsion_stiffn =             90                     $ N/deg
+ belt_twist_stiffn =               1.7e6                  $ Nmm^2/deg
+ Fz_decr_trans_cleat =             10                     $ %
+ Fz_decr_long_cleat =              10                     $ %
+ Fz_decr_6deg_cam =                10                     $ %
+ Fz_decr_trans_cleat_6deg_cam =    20                     $ %
+ belt_torsion_lat_displ_coupl =    0                      $ deg/mm
+ belt_torsion_oop_bend_coupl =     1                      $ -
+
+ belt_torsion_twist_damp =         5                      $ %
+ belt_lat_bend_damp =              0                      $ s
+
+ free_mass_percentage =            55.8365                $ %
+
+ f1 =                              54.0751                $ Hz
+ f2 =                              69.7207                $ Hz
+ f4 =                              50.3253                $ Hz
+ f5 =                              94.6744                $ Hz
+ f6 =                              88.1483                $ Hz
+
+ D1 =                              0.0901889              $ -
+ D2 =                              0.0513958              $ -
+ D4 =                              0.0694989              $ -
+
+ rad_dynamic_stiffening =          20.0749                $ %
+ tang_dynamic_stiffening =         5.1291                 $ %
+ lat_dynamic_stiffening =          0                      $ %
+ time_const_dynamic_stiffening =   0.0154008              $ s
+ radial_hysteretic_stiffening =    0                      $ %
+ radial_hysteresis_force =         0                      $ N
+ tang_hysteretic_stiffening =      0                      $ %
+ tang_hysteresis_force =           0                      $ N
+ lat_hysteretic_stiffening =       0                      $ %
+ lat_hysteresis_force =            0                      $ N
+
+ belt_extension_due_to_vmax =      1                      $ %
+ rel_long_belt_memb_tension =      80                     $ %
+ rel_long_belt_memb_tension_red =  0                      $ %
+
+ sidewall_stretch_stiffn_factor =  20                     $ %
+
+$......................................................rim misuse stiffness data
+ rim_flange_contact_stiffn =       1000                   $ N/mm
+ rim_flange_contact_stiffn_progr = 600                    $ %
+ rim_to_flat_tire_distance =       10                     $ mm
+ rim_to_road_contact_stiffn =      5.0e08                 $ N/mm
+ rim_to_road_contact_frict_coeff = 0.3                    $ -
+
+$...............................................................tread properties
+ tread_depth =                     8                      $ mm
+ tread_base_height =               3                      $ mm
+ rel_min_tread_shoulder_height =   65                     $ %
+ rel_tread_shoulder_width =        30                     $ %
+ stiffness_tread_rubber =          70                     $ ShoreA
+ stiffness_progr_tread_rubber =    600                    $ %
+ tread_pattern_geometry =          'grooves 4 10 20 40 60 80'
+ tread_positive =                  65                     $ %
+ tread_pattern_shape_factor_tang = 1                      $ -
+ tread_pattern_shape_factor_long = 0                      $ -
+ lat_to_long_tread_stiffn_ratio =  1                      $ -
+ sidewall_to_tread_stiffn_ratio =  0.1                    $ -
+ damping_tread_rubber =            0.0002                 $ s
+
+ max_friction_velocity =           63.9334                $ mm/s
+ sliding_velocity =                127.867                $ mm/s
+ blocking_velocity =               4.46069e4              $ mm/s
+ low_ground_pressure =             0                      $ bar
+ med_ground_pressure =             0.472283               $ bar
+ high_ground_pressure =            0.944566               $ bar
+ mu_adhesion_at_low_p =            1.33146                $ -
+ mu_max_at_low_p =                 1.95437                $ -
+ mu_sliding_at_low_p =             1.45304                $ -
+ mu_blocking_at_low_p =            0.648974               $ -
+ mu_adhesion_at_med_p =            1.17169                $ -
+ mu_max_at_med_p =                 1.71986                $ -
+ mu_sliding_at_med_p =             1.27869                $ -
+ mu_blocking_at_med_p =            0.571102               $ -
+ mu_adhesion_at_high_p =           1.01193                $ -
+ mu_max_at_high_p =                1.48535                $ -
+ mu_sliding_at_high_p =            1.10433                $ -
+ mu_blocking_at_high_p =           0.49323                $ -
+
+ time_const_tire_heating =         10                     $ s
+ time_const_tread_heating =        0.01                   $ s
+ tire_heating_at_ref_slip_low_v =  40                     $ degC
+ tread_heating_at_ref_slip_low_v = 60                     $ degC
+ tread_heating_at_ref_slip_med_v = 60                     $ degC
+ tread_heating_at_ref_slip_vmax =  60                     $ degC
+ heating_ref_slip =                10                     $ %
+ perc_frict_power_heating_tread =  100                    $ %
+
+ wear_rate_coefficient =           0                      $ mm/s
+ wear_rate_exponent =              1                      $ -
+
+$.............................................................tire imperfections
+ static_balance_weight =           0                      $ kg
+ static_balance_ang_position =     0                      $ deg
+ dynamic_balance_weight =          0                      $ kg
+ dynamic_balance_ang_position =    0                      $ deg
+ radial_non_uniformity =           0                      $ %
+ radial_non_unif_ang_position =    0                      $ deg
+ tang_non_uniformity =             0                      $ %
+ tang_non_unif_ang_position =      0                      $ deg
+ ply_steer_percentage =            0                      $ %
+ conicity =                        0                      $ deg
+ run_out =                         0                      $ mm
+ run_out_ang_position =            0                      $ deg
+
+$.............................................................air vibration data
+ filling_gas =                     0                      $ -
+
+$.................................................flexible/viscoplastic rim data
+ flex_rim_lateral_stiffn =         100                    $ N/mm^2
+ flex_rim_radial_stiffn =          100                    $ N/mm^2
+ flex_rim_compliance_shape_fact =  10                     $ deg
+ number_rim_spokes =               5                      $ -
+ rim_stiffn_variation_by_spokes =  50                     $ %
+ radial_stiffn_red_inner_side =    50                     $ %
+ max_elastic_lat_rim_node_displ =  5                      $ mm
+ max_elastic_rad_rim_node_displ =  5                      $ mm
+
+$....................................................................TPMS sensor
+ angle_pos_TPMS_sensor =           0                      $ deg
+ lateral_pos_TPMS_sensor =         0                      $ mm
+ dist_TPMS_sensor_inner_liner =    0                      $ mm
+ mass_TPMS_sensor =                0                      $ kg
+
+$...........................................................measuring conditions
+ inflation_pressure =              2.4                    $ bar
+ cleat_width =                     50                     $ mm
+ rim_axial_mom_of_inertia =        1.55886e5              $ kgmm^2
+ rim_radial_mom_of_inertia =       7.79431e4              $ kgmm^2
+
+$...........................................................data usage selection
+ weight_free_mass_percentage =     20                     $ -
+ weight_stiffn_tread_rubber =      20                     $ -
+ weight_rad_torsion_stiffn =       20                     $ -
+ weight_in_plane_bend_stiffn =     20                     $ -
+ weight_lat_bend_stiffn =          20                     $ -
+ weight_out_of_plane_bend_stiffn = 20                     $ -
+ weight_belt_torsion_stiffn =      20                     $ -
+ weight_belt_twist_stiffn =        20                     $ -
+ weight_rel_long_belt_memb_tens =  20                     $ -
+
+ weight_f1 =                       0                      $ -
+ weight_f2 =                       0                      $ -
+ weight_f4 =                       0                      $ -
+ weight_f5 =                       0                      $ -
+ weight_f6 =                       0                      $ -
+
+ weight_tire_long_stiffn =         20                     $ -
+ weight_tire_lat_stiffn =          20                     $ -
+ weight_tire_tors_stiffn =         0                      $ -
+ weight_Fz_trans_cleat =           0                      $ -
+ weight_Fz_long_cleat =            0                      $ -
+ weight_Fz_cam =                   0                      $ -
+ weight_Fz_trans_cleat_cam =       0                      $ -
+
+ weight_slip_stiffn =              0                      $ -
+ weight_cornering_stiffn =         0                      $ -
+ weight_camber_stiffn =            0                      $ -
+ weight_pneumatic_trail =          0                      $ -
+
+$..............................................nominal but currently unused data
+ wheel_load_long_stiffn_nom =      5026.69                $ N
+ wheel_load_lat_stiffn_nom =       5018.05                $ N
+ tire_long_stiffn_nom =            230.374                $ N/mm
+ tire_lat_stiffn_nom =             114.285                $ N/mm
+ Fz_decr_trans_cleat_nom =         -3.03994               $ %
+
+$.................................................................numerical data
+ number_belt_segments =            80                     $ -
+ number_belt_bend_shape_funct =    7                      $ -
+ number_blocks_per_belt_segm =     40                     $ -
+ number_tread_strips =             20                     $ -
+ maximum_time_step =               0.0002                 $ s
+ maximum_angle_increment =         1                      $ deg
+ Jacobian_CP_fraction =            1                      $ -
+ contact_processor_bound =         35                     $ %
+
+ number_belt_segments_RT =         60                     $ -
+ number_belt_bend_shape_funct_RT = 3                      $ -
+ number_blocks_per_belt_segm_RT =  15                     $ -
+ number_tread_strips_RT =          15                     $ -
+ maximum_time_step_RT =            0.00025                $ s
+ maximum_angle_increment_RT =      2.5                    $ deg
+ Jacobian_CP_fraction_RT =         0.5                    $ -
+ contact_processor_bound_RT =      35                     $ %
+
+ contact_processor_cycle_length =  1                      $ -
+ high_precision_tang_plane =       0                      $ -
+ BDF_parm_wo_rigid_body_modes =    0.5                    $ -
+ BDF_parameter_air_vibration =     0.7                    $ -
+ Jacobian_update_cycle_length =    1                      $ -
+
+ stat_time_step =                  0.003                  $ s
+ stat_BDF_parameter =              4                      $ -
+ stat_mass_reduction =             0.01                   $ -
+ stat_inertia_reduction =          0.01                   $ -
+ step_size_Jacobian =              0.001                  $ -
+ stat_conv_tolerance =             1.0e-8                 $ -
+ stat_max_update_iter =            1.0e4                  $ -
+ pp_conv_tolerance =               1.0e-8                 $ -
+ pp_max_cycles =                   1                      $ -
+
+ generation_date =                 20130920               $ YYYYMMDD
+ last_modification_date =          20180601               $ YYYYMMDD
+ only_use_FTire_updates_until =    20991231               $ YYYYMMDD
+
+$..........data not used any longer; added for compatibility with older versions
+ rim_inertia =                     1.55886e5              $ kgmm^2
+ belt_extension_at_vmax =          0.5                    $ %
+ tire_temp_at_ref_slip_low_v =     60                     $ degC
+ tread_temp_at_ref_slip_low_v =    80                     $ degC
+ tread_temp_at_ref_slip_med_v =    80                     $ degC
+ tread_temp_at_ref_slip_vmax =     80                     $ degC
+ temp_ref_slip =                   10                     $ %
+ filling_gas_0_air_1_nitrogen =    0                      $ -
+ only_use_FTire_updates_prior_to = 20991231               $ YYYYMMDD
+
+$...........preprocessed data (do not edit); cosin software version r20610 used
+ preprocessed_data =
+  00000000400000003A92A30540239D0100000000000000000000000000000000
+  0000000040540000000000004026000000000000404400000000000040340000
+  EB1C432D3F2A36E2000000003FF00000000000003FF000000000000040540000
+  000000004026000000000000404400000000000040340000EB1C432D3F2A36E2
+  000000003FF00000000000003FF0000000000000404E000000000000401C0000
+  00000000402E000000000000402E0000D2F1A9FC3F30624D0000000040040000
+  000000003FE0000033333334BFD3333300000000400C00000000000040000000
+  00000000BFE00000666666663FE66666000000003FF00000000000003FF00000
+  9999999A3FA99999793628C93FD351D259083BA43FD3868D059210383FC6E04C
+  395810623FC6C8B410624DD23FCC395858E219653F91B717020C49BA3F86872B
+  2E48E8A73FC521FF0000000000000000A3D70A3E3FCA3D70A3D70A3E3FCA3D70
+  00000000404B8000D1C87A194DD7BD29D1C87A194DD7BD2900000000410D4C00
+  000000000000000000000000410D4C0066666666407252660000000040F86A00
+  6666666640725266666666664072526666666666407252663333333340203333
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29BC6A7EFA3F689374
+  020C49BA3F86872B020C49BA3F86872B020C49BA3F86872B020C49BA3F86872B
+  8D7C440A4185536D47AE147B3F947AE1239CB3E040B00C4FCCCCCCCC3FFCCCCC
+  6E978D5040561712DBB296783FC2355300000000000000000000000040590000
+  000000003FF00000000000003FE0000000000000000000005EBE510A40B83883
+  BAA3210940A6416E0F8EE43540CA60BE9999999ABFB999999999999ABFB99999
+  FFFFFFFF4119351FAA39D743C021F4000000000000000000333333333FF33333
+  316E4570407967FD1EB851EA3FF9EB85BEDFA4404021AC0EC5EA8A5A3F8D221F
+  189840D5409360692EE8E73B4071CDF2A60BE9C440A51A319999999A3FC99999
+  0000000040E42A80AA39D743C021F4000000000000000000AADA33BE3FC9B224
+  5F2884843FAA42D00000000000000000D6E5566640503BA00000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000F9C2AE85405E9071D258D2984028B64100540D7340079FB3
+  2E43CD1340059B63B52292BD3FF50A3C00540D7340079FB331EB6950401E28C7
+  B52292BD3FF50A3C9999999A3FA9999900000000400800000000000040080000
+  0000000000000000000000003FF00000EB1C432D3F2A36E2761F410E3FB05DF0
+  239E6ABA3FC05DF2E631F8A140464DAE00000000000000009999999A40E70F89
+  9999999A40F70F89003EEA213FF54DA97A24894C3FFF4519DEFC7A3A3FF73FA6
+  1F3E89A93FE4C4650370CDC83FF2BF3EEB5B2D4D3FFB848BA53B8E4C3FF47583
+  B395C4223FE2467782FD75E23FF030DD5C91D14E3FF7C3FEEF1FDDEC3FF1AB55
+  8FD9FD373FDF91140000000000000000D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29000000003FF00000D1C87A194DD7BD29000000003FF00000
+  AE0F7D6440A516260849DCAA400B05714D95918640533C6B4D95918640533C6B
+  4D95918640633C6B4D95918640633C6B65601224BFD01F1ED2D7380A3FB1EFC4
+  623E3AB63F33DA9E000000003FF000000000000000000000D1C87A194DD7BD29
+  D1C87A194DD7BD29000000004197D784000000004197D7840000000040240000
+  0000000040140000000000004049000047AE147B3F747AE147AE147B3F747AE1
+  0000000040490000D1C87A194DD7BD2900000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  000000003FF00000A54E30D640E2082631BD967240C80ADE0000000000000000
+  00000000000000009999999A3FB99999000000003FF000006AF09CCA415696D8
+  A7F8012F3F988954925B72A73F984581E2308C3A3E45798E000000003FF00000
+  532617C23F92A30598C7E2823FA096BBA3D70A3DC0B3A2B0CCCCCCCDC0B39A0C
+  A3D70A3DC0B3A2B0EC32C3A23F9298E6EC32C3A23F9298E6532617C23F92A305
+  98C7E2823FA096BBA3D70A3DC0B3A2B0CCCCCCCDC0B39A0CA3D70A3DC0B3A2B0
+  EC32C3A23F9298E60000D3B940A78F00CCCD762E4082D8CC998B1DFA40B78F19
+  47A27E624092D8E1000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  000000000000000000000000000000000000000000000000F3D795A83FF16E64
+  2E1858F33F534BA1443BCF784011C20E770633663F5D8BDF0000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000059DFE48F40572170446663CC4061D299
+  E06FD1EA4063D847A9670EC54063D6DC6F3689ED3F816AA0C945F5A63F8CEF12
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  400000003F847AE19999999A3FF1999995C5F9D63FC8A401C6A378883FD51BA5
+  D712A0EC400C9E31F2190B583FBD53EE015332683FC643390000000000000000
+  54442D183FF921FB000000000000000054442D183FF921FB0000000000000000
+  54442D18BFF921FB000000000000000054442D18BFF921FB0000000000000000
+  0000000000000000000000008000000000000000000000000000000000000000
+  00000000000000009161BCB33FACF215E05E30F93F23B943000000004056C000
+  0000000040260000000000003FF00000D1C87A194DD7BD290000000000000000
+  0000000000000000000000008000000000000000000000000000000000000000
+  00000000000000009999999A3FE99999000000003FF00000000000003FE00000
+  0000000000000000000000004050400000000000412E848047AE147B3F847AE1
+  A2000000425D1A94333333333FD3333300000000403400009999999A3FA99999
+  000000000000000000000000000000000000000000000000BC6A7EFA3F689374
+  000000004010000047AE147B3F847AE147AE147B3F847AE1D2F1A9FC3F50624D
+  E2308C3A3E45798E0000000040C388000000000040000000AAAAAAAB4050AAAA
+  333333333FD33333CCCCCCCD3FE4CCCC00000000000000000000000000000000
+  000000003FF000000000000000000000000000003FF000000000000000000000
+  D1C87A194DD7BD29D1C87A194DD7BD290000000000000000D1C87A194DD7BD29
+  25C57147BFB7641525C57148BFB7641500000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000040340000000000004034000000000000403400000000000040340000
+  0000000040340000000000004034000000000000403400000000000040340000
+  0000000040340000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000403400000000000040340000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000D1C87A194DD7BD2900000000000000000000000040D42080
+  0000000000000000000000000000000070773FB93FD0C7DC10E7A3243FB58A4B
+  F224FF553FD0B817887457233FD7DE32BBBF86703FE410E606E915C13FE7A3F4
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  00000000000000000000000000000000D1C87A194DD7BD29000000003FF00000
+  00000000BFF0000080000000417332C69000000041733EE7F0000000417404CF
+  00000000405DC00000000000405DC00000000000000000000000000000000000
+  00000000000000000000000040AF400000000000405DC000189374BC407EF004
+  0C49BA5E408F78020624DD2F4090FC010624DD2F40923C0100000000408F7800
+  0624DD2F40937C0100000000408F78000624DD2F4094BC010624DD2F4095FC01
+  0624DD2F40973C014189374C40B526004189374C40B5A300083126E940E342A0
+  10624DD340DB48C010624DD340DEE0C0083126E940E16460083126E940E18C60
+  624DD2F2405400100C49BA5E408E00020624DD2F409CC00183126E9840A4A000
+  83126E9840AE00004189374C40B3B0004189374C40B400004189374C40B45000
+  4189374C40B4A0004189374C40B4F0004189374C40B6D0004189374C40B8B000
+  20C49BA640C2980020C49BA640C8D80020C49BA640CF180010624DD340D2AC00
+  10624DD340D5CC0010624DD340D8EC0010624DD340DC0C0010624DD340DC1600
+  10624DD340DC1B0010624DD340DC200010624DD340DC250010624DD340DC2A00
+  10624DD340DC7A0010624DD340DCCA0010624DD340DD1A00083126E940E01D00
+  083126E940E01D00083126E940E2ED00083126E940E5BD00189374BC40747004
+  0C49BA5E408938020C49BA5E408438020C49BA5E408E38020624DD2F40905C01
+  0624DD2F40919C010624DD2F40991C0183126E9840A04E0083126E9840A0EE00
+  83126E9840A2CE0083126E9840A36E0020C49BA640CC4B8010624DD340D9DDC0
+  083126E940E2CAE0083126E940E8A6E0083126E940EA9AE0083126E940EC8EE0
+  083126E940EE82E00418937540F03B700418937540F135700418937540F22F70
+  0418937540F329700418937540F423700418937540F51D700418937540F61770
+  0418937540F711700418937540F80B700418937540F905700418937540F9FF70
+  0418937540FAF9700418937540FBF3700418937540FCED700418937540FDE770
+  0418937540FDE8B00418937540FE2730D70A3D71409DF3A3FFFFFFFF402FFFFF
+  3D70A3D74066570A00000000406640003333333340203333000000004069A000
+  00000000404B800000000000401A00000000000000000000D1C87A194DD7BD29
+  D1C87A194DD7BD29000000004069A0000000000000000000E075F6FD404B099C
+  F2E48E8A40516E1F6E2EB1C4404929A35E9E1B094057AB29BF487FCC4056097D
+  A7F653AF3FB7169EE04DB3113FAA508C0E9BA4363FB1CAAE0000000000000000
+  00000000000000005104D551402E31F7000000000000000018BD6628403A71CA
+  A7F653AF3FB7169EE04DB3113FAA508C0E9BA4363FB1CAAE3333333340033333
+  00000000000000000000000040518000000000004082C000000000003FF00000
+  9999999A3FB99999000000004020000000000000402000000000000040200000
+  0000000040080000000000004050400000000000403E00000000000040504000
+  D1C87A194DD7BD29000000003FF000000000000000000000D1C87A194DD7BD29
+  EB1C432D3F2A36E2D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29761F410E3FB05DF0239E6ABA3FC05DF2E631F8A140464DAE
+  000000000000000079DD3BB03FDE39E279DD3BB03FEE39E2003EEA213FF54DA9
+  7A24894C3FFF4519DEFC7A3A3FF73FA61F3E89A93FE4C4650370CDC83FF2BF3E
+  EB5B2D4D3FFB848BA53B8E4C3FF47583B395C4223FE2467782FD75E23FF030DD
+  5C91D14E3FF7C3FEEF1FDDEC3FF1AB558FD9FD373FDF91140000000000000000
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD290000000040540000
+  D1C87A194DD7BD290000000000000000000000003FF00000000000004056C000
+  0000000040260000000000003FF0000033333333403233333333333340403333
+  A3D70A3DC0B3A2B0CCCCCCCDC0B39A0CA3D70A3DC0B3A2B082A9930C40322951
+  82A9930C4032295133333333403233333333333340403333A3D70A3DC0B3A2B0
+  CCCCCCCDC0B39A0CA3D70A3DC0B3A2B082A9930C403229510000000040A78F00
+  9999999A40B78F19D1C87A194DD7BD29D1C87A194DD7BD290000000040240000
+  0000000000000000000000004024000000000000000000000000000040240000
+  000000000000000000000000403400000000000000000000D1C87A194DD7BD29
+  D1C87A194DD7BD2900000000405E00000000000040340000F5C28F5C406C9828
+  D1C87A194DD7BD2900000000C024000022D0E560405BD1DBD1C87A194DD7BD29
+  00000000C024000019CE075F4044AA51D1C87A194DD7BD2981A5870D3FE6551F
+  C996B7683FEEBC70D1C87A194DD7BD291D7DBF4840304738D1C87A194DD7BD29
+  DBA908A23FB057D9D1C87A194DD7BD29A57A786C4034132CCA57A78740148432
+  000000000000000062A86BC43F8F8A7400000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  000000003FF000000000000040568000333333333FFB33330000000000000000
+  000000003FF00000000000000000000000000000000000000000000040140000
+  00000000409130000000000041193520CCCCCCCC3FFCCCCC6E978D5040561712
+  0000000040180000000000000000000000000000000000000000000040590000
+  000000003FE00000000000000000000000000000000000000000000000000000
+  1E4F7660403A82160000000000000000D1C87A194DD7BD290000000000000000
+  6E978D50404BEB1200000000405400000000000000000000000000003FE00000
+  0000000000000000D1C87A194DD7BD29D1C87A194DD7BD290000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000003972E8553FB3F414
+  8BF3BEA93FC3F41200000000408F4000000000004082C0000000000040240000
+  0000000041BDCD65333333333FD3333300000000403400000000000040240000
+  47AE147B3F847AE100000000404E000000000000405400000000000040540000
+  0000000040540000000000004024000000000000405900000000000000000000
+  D1C87A194DD7BD29D1C87A194DD7BD2900000000405900000000000040590000
+  0000000040240000000000004014000000000000404900000000000040140000
+  00000000401400000000000040490000D1C87A194DD7BD290000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  3A92A30540239D01000000004054000000000000401C00000000000040440000
+  0000000040340000EB1C432D3F2A36E2000000003FF0000000000000BFE00000
+  666666663FE66666000000003FF00000000000003FF000000000000040418000
+  000000003FF0000000000000404E0000000000004008000000000000402E0000
+  00000000402E0000D2F1A9FC3F30624D0000000040040000000000003FE00000
+  0000000040418000D1C87A194DD7BD2900000000404900000000000000000000
+  BC6A7EFA3F689374000000004010000047AE147B3F847AE147AE147B3F847AE1
+  D2F1A9FC3F50624DE2308C3A3E45798E0000000040C388000000000000000000
+  E2308C3A3E45798E000000003FF0000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000D1C87A194DD7BD29D1C87A194DD7BD290000000000000000
+  0000000040340000000000004034000000000000403400000000000040340000
+  0000000040340000000000004034000000000000403400000000000040340000
+  0000000040340000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000403400000000000040340000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000D1C87A194DD7BD29A3D70A3DC0B3A2B0CCCCCCCDC0B39A0C
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29CED91687406CCBF770A3D70A405C923DD1C87A194DD7BD29
+  D1C87A194DD7BD29100E6AFDC00851CCD1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD29
+  D1C87A194DD7BD29D1C87A194DD7BD29D1C87A194DD7BD290000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  0000000000000000000000000000000000000000000000000000000000000000
+  00000000000000002020203F2020202020202020202020202020202020202020
+  20202020202020202020203F2020202020202020202020202020202020202020
+  20202020202020202020203F2020202020202020202020202020202020202020
+  2020202020202020000000003FF0000080000000417332C69000000041733EE7
+  F0000000417404CF00000000408000000000000040E342A00000000040E5D0E0
+  0000000040FE286000000000411E024C6C6F562F73656D7567656C2F2F796361
+  393130326F2F332D782F7873365F363875622F345F646C6962657270646C6975
+  7365722F6372756F74662F652F65726961726170645F2F6D75616665742E746C
+  2020726920202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202063616E69657669746F72673A7365766F
+  3120342030322030203034203820303620202030202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  2020202020202020202020202020202020202020202020202020202020202020
+  20202020202020202020202020202020
